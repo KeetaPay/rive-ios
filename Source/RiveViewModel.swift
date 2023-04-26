@@ -77,6 +77,7 @@ open class RiveViewModel: NSObject, ObservableObject, RiveFileDelegate, RiveStat
     
     public init(
         fileName: String,
+        bundle: Bundle = .main,
         stateMachineName: String?,
         fit: RiveFit = .contain,
         alignment: RiveAlignment = .center,
@@ -87,12 +88,13 @@ open class RiveViewModel: NSObject, ObservableObject, RiveFileDelegate, RiveStat
         self.alignment = alignment
         self.autoPlay = autoPlay
         super.init()
-        riveModel = try! RiveModel(fileName: fileName)
+        riveModel = try! RiveModel(fileName: fileName, in: bundle)
         sharedInit(artboardName: artboardName, stateMachineName: stateMachineName, animationName: nil)
     }
     
     public init(
         fileName: String,
+        bundle: Bundle = .main,
         animationName: String? = nil,
         fit: RiveFit = .contain,
         alignment: RiveAlignment = .center,
@@ -103,7 +105,7 @@ open class RiveViewModel: NSObject, ObservableObject, RiveFileDelegate, RiveStat
         self.alignment = alignment
         self.autoPlay = autoPlay
         super.init()
-        riveModel = try! RiveModel(fileName: fileName)
+        riveModel = try! RiveModel(fileName: fileName, in: bundle)
         sharedInit(artboardName: artboardName, stateMachineName: nil, animationName: animationName)
     }
     
